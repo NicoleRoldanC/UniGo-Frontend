@@ -4,6 +4,10 @@
 
     <div v-if="loading">Cargando personas...</div>
 
+    <div v-else-if="!loading && personas.length === 0">
+      <p>No hay personas a mostrar.</p>
+    </div>
+
     <div v-else>
       <table>
         <thead>
@@ -39,6 +43,7 @@
 import { ref, onMounted } from 'vue'
 import { getAllPersonas } from '../services/personaService.js'
 
+/** @type {import('vue').Ref<import('../models/Persona').Persona[]>} */
 const personas = ref([])
 const loading = ref(true)
 
